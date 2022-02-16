@@ -6,6 +6,7 @@ export default function SignUp() {
     return (
         <>
             <div className="bg-teal-500"> 
+                
                 <h1> Hewllooo there </h1> 
                 <button className="bg-blue-500 p-2" onClick={() => signIn()}> Sign in </button>
                 <br />
