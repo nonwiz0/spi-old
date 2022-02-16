@@ -13,4 +13,4 @@ Implement authentication using credentials.
 
 ## Note
 
-Build with Nextjs, NextAuth (Authentication), Prisma (ORM), MariaDB (Database)
+Build with Tailwind + Nextjs, NextAuth (Authentication), Prisma (ORM), MariaDB (Database)
