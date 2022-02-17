@@ -21,23 +21,23 @@ export default NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const getUser = await prisma.user.findMany();
-        console.log({ getUser });
+        const allUser = await prisma.user.findMany();
         const user = {
           id: 1,
           name: "J Smith",
           email: "john@gmail.com",
           username: "john",
         };
-        console.log("Credentials", credentials);
-        if (
-          credentials != undefined &&
-          credentials["username"] === "john" &&
-          credentials["password"] === "test"
-        ) {
+        const findUser = await prisma.user.findUnique({where: {
+          username: credentials.username,
+        }})
+        console.log("Users", allUser, "Find user", findUser, "Is password the same?", credentials.password === findUser.password)
+
+        if (findUser && credentials.password === findUser.password) {
           console.log("Logged in");
-          return user;
+          return findUser;
         }
+        console.log("Invalid account credential")
         return null;
 
         //   if (user) {
@@ -64,9 +64,9 @@ export default NextAuth({
           return session;
         },
       },
-      secret: "SECRET",
+      secret: process.env.SECRET,
       jwt: {
-        secret: "SECRET",
+        secret: process.env.SECRET,
         encryption: true,
       },
       pages: {
