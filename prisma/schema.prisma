@@ -36,16 +36,36 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Location {
+  id          String  @id @default(cuid())
+  building    String
+  floor       String
+  roomNumber  String
+  description String?
+  User        User[]
+}
+
+model Department {
+  id          String  @id @default(cuid())
+  description String?
+  User        User[]
+}
+
 model User {
-  id            String    @id @default(cuid())
-  username      String    @unique
+  id            String     @id @default(cuid())
+  username      String     @unique
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   password      String
+  role          String?
+  department    Department @relation(fields: [departmentId], references: [id])
+  location      Location   @relation(fields: [locationId], references: [id])
   accounts      Account[]
   sessions      Session[]
+  departmentId  String
+  locationId    String
 }
 
 model VerificationToken {
