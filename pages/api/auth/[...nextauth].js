@@ -1,10 +1,11 @@
 import NextAuth from "next-auth";
-
+import { prisma } from "db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { hash } from "bcryptjs";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export default NextAuth({
   providers: [
@@ -19,23 +20,25 @@ export default NextAuth({
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const allUser = await prisma.user.findMany();
+        const all_user = await prisma.user.findMany();
         const user = {
           id: 1,
           name: "J Smith",
           email: "john@gmail.com",
           username: "john",
         };
-        const findUser = await prisma.user.findUnique({where: {
+        const hash_pw = await hash(credentials.password, 12)
+        const find_user = await prisma.user.findUnique({where: {
           username: credentials.username,
         }})
-        console.log("Users", allUser, "Find user", findUser, "Is password the same?", credentials.password === findUser.password)
+        console.log("Users", all_user, "Find user", find_user, "Is password the same?", credentials.password === find_user.password)
 
-        if (findUser && credentials.password === findUser.password) {
+        if (find_user && credentials.password === find_user.password) {
           console.log("Logged in");
-          return findUser;
+          return find_user;
         }
         console.log("Invalid account credential")
         return null;

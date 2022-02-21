@@ -13,4 +13,8 @@ Implement authentication using credentials.
 
 ## Note
 
-Build with Tailwind + Nextjs, NextAuth (Authentication), Prisma (ORM), MariaDB (Database)
+Build with Tailwind + Nextjs, NextAuth (Authentication), Prisma (ORM), MariaDB (Database) + bcryptjs
+
+## Current Issue
+- Session is not properly implemented
+- Account Model is not properly implemented either

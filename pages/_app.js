@@ -1,7 +1,7 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <SessionProvider session={session}>
       <Head>
         <title>SPI</title>
-      </Head>
+     </Head>
       <div className="relative font-mono h-screen bg-sky-50 text-sky-800 ">
         <Header />
         <Component {...pageProps} />

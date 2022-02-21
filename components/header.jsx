@@ -6,7 +6,7 @@ const Header = () => {
   console.log(session);
   return (
     <>
-      <div className="p-2 bg-sky-900 text-white flex flex-row justify-between">
+      <div className="p-2 bg-primary text-white flex flex-row justify-between">
         <div>
           <Link href="/"><a> COR - SPI </a></Link>
         </div>
