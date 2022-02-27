@@ -7,15 +7,14 @@ const handler = async (req, res) => {
     if (req.method != "POST" || !session.user.email) {
         return res.status(403).json({ message: "Request forbidden" });
     }
-    const { email, username, name, password, role } = req.body;
-    const hash_pw = await hash(password, 12)
+    const { building, floor, room_number, description } = req.body;
  
     try {
-    const new_user = await prisma.user.create({data: {
-        email, username, name, role, password: hash_pw
+    const new_location = await prisma.location.create({data: {
+        building, floor: Number(floor), room_number: Number(room_number), description
     }})
-    console.log("Created user successfully")
-    return res.status(200).json(new_user)
+    console.log("Created location successfully")
+    return res.status(200).json(new_location)
     } catch (err) {
         console.log("Error", err)
         res.status(400).json({message: err})

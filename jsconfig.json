@@ -3,7 +3,9 @@
       "baseUrl": ".",
       "paths": {
         "@/components/*": ["components/*"],
-        "@/styles/*": ["styles/*"]
+        "@/styles/*": ["styles/*"],
+        "@/auth": ["pages/api/auth/[...nextauth].js"],
+        "@/utils/*": ["utils/*"],
       }
     }
 }

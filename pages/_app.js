@@ -10,11 +10,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <Head>
         <title>SPI</title>
      </Head>
-      <div className="relative font-mono h-screen bg-sky-50 text-sky-800 ">
-        <Header />
+     {/*  <div className="relative font-mono h-screen bg-sky-50 text-sky-800 ">
+        <Header /> */}
         <Component {...pageProps} />
-        <Footer />
-      </div>
+     {/*    <Footer />
+      </div> */}
     </SessionProvider>
   );
 }

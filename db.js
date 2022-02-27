@@ -6,6 +6,5 @@ if (!global.prisma) {
 }
 prisma = global.prisma;
 
-console.log("prismalib", prisma, global);
 
 export default prisma;
